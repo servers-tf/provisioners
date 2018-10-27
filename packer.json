@@ -1,0 +1,77 @@
+{
+    "variables": {
+        "project_id": "tf2-servers",
+        "playbook": null
+    },
+    "builders": [
+        {
+            "account_file": "/home/phennessy517/account.json",
+            "type": "googlecompute",
+            "project_id": "{{user `project_id`}}",
+            "source_image":  "ubuntu-1804-bionic-v20180613",
+            "source_image_family": "ubuntu-1804-lts",
+            "ssh_username": "packer",
+            "subnetwork": "projects/tf2-servers/regions/us-central1/subnetworks/sandbox-subnet",
+            "zone": "us-central1-a",
+            "image_name": "{{user `playbook`}}-{{timestamp}}",
+            "image_family": "{{user `playbook`}}",
+            "instance_name": "packer-{{user `playbook`}}-{{uuid}}",
+            "disk_size": 20,
+            "preemptible": true,
+            "tags": ["gameserver-subnet"]
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+              "sudo apt install software-properties-common",
+              "sudo apt-add-repository --yes ppa:ansible/ansible",
+              "sudo apt update",
+              "sudo apt install --yes ansible"
+            ]
+        },
+        {
+            "type": "file",
+            "source": "./ansible.cfg",
+            "destination": "/tmp/ansible.cfg"
+        },
+        {
+            "type": "shell",
+            "inline": [
+                "sudo mv /tmp/ansible.cfg /etc/ansible/ansible.cfg",
+                "sudo chown root:root /etc/ansible/ansible.cfg"
+            ]
+        },
+        {
+            "type": "ansible-local",
+            "playbook_file": "playbooks/{{user `playbook`}}/main.yml",
+            "playbook_dir": "playbooks/{{user `playbook`}}",
+            "role_paths": [
+                "roles/security",
+                "roles/utils",
+                "roles/monitoring",
+                "roles/srcds",
+                "roles/sourcemod/sm-advertisements",
+                "roles/sourcemod/sm-botmanager",
+                "roles/sourcemod/sm-cannounce",
+                "roles/sourcemod/sm-curl",
+                "roles/sourcemod/sm-demostf",
+                "roles/sourcemod/sm-gamemodemenu",
+                "roles/sourcemod/sm-comp",
+                "roles/sourcemod/sm-mapchooser",
+                "roles/sourcemod/sm-mge",
+                "roles/sourcemod/sm-respawn",
+                "roles/sourcemod/sm-scramble",
+                "roles/sourcemod/sm-serverhudlogo",
+                "roles/sourcemod/sm-soapdm",
+                "roles/sourcemod/sm-meleeonly",
+                "roles/sourcemod/sm-swapteam",
+                "roles/sourcemod/sm-vacbans",
+                "roles/sourcemod/sourcemod",
+                "roles/sourcepython/sourcepython",
+                "roles/sourcepython/sp-logger"
+            ]
+        }
+    ]
+}

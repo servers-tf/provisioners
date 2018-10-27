@@ -1,0 +1,49 @@
+---
+
+- name: Create telegraf user
+  user:
+    name: "telegraf"
+    state: present
+
+- name: Create Telegraf directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+  with_items:
+    - /etc/telegraf/
+    - /etc/telegraf/telegraf.d
+
+- name: Install Telegraf
+  unarchive:
+    src: https://dl.influxdata.com/telegraf/releases/telegraf-1.7.4_linux_amd64.tar.gz
+    dest: "/tmp"
+    copy: no
+    owner: telegraf
+    group: telegraf
+
+- name: Install Telegraf
+  command: "/bin/bash -c \"sleep 5 && chown -R telegraf: /tmp/telegraf/ && cp -R /tmp/telegraf/* /\""
+    
+- name: Telegraf systemd unit
+  copy:
+    src: files/lib/systemd/system/telegraf.service
+    dest: /lib/systemd/system/telegraf.service
+    owner: root
+    group: root
+    mode: 0600
+
+- name: Enable Telegraf systemd unit
+  service:
+     name: telegraf
+     enabled: yes      
+    
+- name: Telegraf config file
+  copy:
+    src: files/etc/telegraf/telegraf.conf
+    dest: /etc/telegraf/telegraf.conf
+    owner: telegraf
+    group: telegraf
+    mode: 0600
+

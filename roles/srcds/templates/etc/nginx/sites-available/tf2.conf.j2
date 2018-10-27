@@ -1,0 +1,17 @@
+server {
+    listen              80;
+
+    access_log          /var/log/nginx/tf2.access.log combined;
+    error_log           /var/log/nginx/tf2.error.log warn;
+
+    location = /status {
+        stub_status;  
+        allow 127.0.0.1;
+        deny all;
+    }
+    
+    location /maps {
+        root {{ http_root }};
+        autoindex on;
+    }
+}

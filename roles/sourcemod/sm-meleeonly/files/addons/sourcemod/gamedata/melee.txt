@@ -1,0 +1,14 @@
+"Games"
+{
+	"tf"
+	{
+		"Offsets"
+		{
+			"CTFWeaponBase::WeaponReset"
+			{
+				"linux"		"426"
+				"windows"	"419"
+			}
+		}
+	}
+}

@@ -1,0 +1,131 @@
+---
+- hosts: localhost
+  become: true
+  connection: local
+  gather_facts: no
+    
+  vars:
+    srcds_root_dir: /usr/games/steam/
+    srcds_user: steam
+  
+  roles:
+    - role: utils
+    - role: security
+    - role: monitoring
+    - role: srcds
+      http_root: "{{ srcds_root_dir }}/tf2/tf/custom/mapdl/"
+    
+  tasks:
+    - name: Create custom map folder
+      file:
+        path: "{{ srcds_root_dir }}/tf2/tf/custom/mapdl/maps/"
+        state: directory
+        owner: "{{ srcds_user }}"
+        group: "{{ srcds_user }}"
+
+    - name: Download custom maps
+      get_url:
+        url: "http://maps.tf2.games/maps/{{ item }}.bsp"
+        dest: "{{ srcds_root_dir }}/tf2/tf/custom/mapdl/maps/{{ item }}.bsp"
+        owner: "{{ srcds_user }}"
+        group: "{{ srcds_user }}"
+        mode: 0444
+      ignore_errors: yes
+      with_items:
+      - cp_cardinal_rc1a
+      - cp_granary_pro_rc8
+      - cp_kalinka_rc1
+      - cp_prolands_b3b
+      - cp_reckoner_rc3
+      - cp_snakewater_u14
+      - cp_warmfrost_rc1
+      - koth_ashville_rc1
+      - koth_bagel_rc2a
+      - koth_cascade_rc1a
+      - koth_coalplant_b8
+      - koth_product_rc8
+      - koth_ramjam_rc1
+      - koth_sandstone_pro_rc1
+      - koth_trainsawlaser_rc2
+      - mge_oihguv_sucks_a12
+      - mge_chillypunch_final3
+      - mge_training_v8_beta4b
+      - pl_badwater_pro_v12
+      - pl_barnblitz_pro6
+      - ultiduo_baloo
+      - ultiduo_gullywash_b2
+      - ultiduo_lookout_a7    
+  
+    - name: Install Sourcemod
+      include_role:
+        name: sourcemod
+        
+    - name: Install SourcePython
+      include_role:
+        name: sourcepython
+        
+    - name: Install Common Sourcemod Plugins
+      include_role: 
+        name: "{{ item }}"
+      with_items:
+        - sm-vacbans
+        - sm-cannounce
+        - sm-swapteam  
+
+    - name: Install Competitive Sourcemod Plugins
+      include_role: 
+        name: "{{ item }}"
+      with_items:
+        - sm-curl
+        - sm-mge
+        - sm-soapdm
+        - sm-comp
+        - sm-demostf
+        - sm-gamemodemenu
+        - sm-meleeonly
+
+    - name: Install Competitive SourcePython Plugins
+      include_role: 
+        name: "{{ item }}"
+      with_items:
+        - sp-logger
+        
+    - name: Install Server config
+      template:
+        src: templates/competitive.cfg.j2
+        dest: "{{ srcds_root_dir }}/tf2/tf/cfg/server.cfg"
+        owner: "{{ srcds_user }}"
+        group: "{{ srcds_user }}"
+        mode: 0600   
+        
+    - name: Enable SQL Admin Soucemod Plugins
+      command: "{{ item }}" 
+      with_items: 
+        - mv "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/disabled/admin-sql-prefetch.smx" "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/" 
+        - mv "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/disabled/sql-admin-manager.smx" "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/"    
+        
+    - name: Upload startup script
+      template:
+        src: files/opt/startup.sh
+        dest: "/opt/startup.sh"
+        owner: "root"
+        group: "root"
+        mode: 0700                  
+
+    - name: Telegraf srcds config
+      copy:
+        src: files/etc/telegraf/telegraf.d/srcds.conf
+        dest: /etc/telegraf/telegraf.d/srcds.conf
+        owner: telegraf
+        group: telegraf
+        mode: 0700
+
+    - name: Telegraf srcds config
+      copy:
+        src: files/etc/telegraf/telegraf.d/srcds.sh
+        dest: /etc/telegraf/telegraf.d/srcds.sh
+        owner: telegraf
+        group: telegraf
+        mode: 0600
+
+          

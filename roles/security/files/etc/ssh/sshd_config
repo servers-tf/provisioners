@@ -1,0 +1,77 @@
+# $OpenBSD: sshd_config,v 1.93 2014/01/10 05:59:19 djm Exp $
+#NS-Customized sshd_config with proper security configs
+
+# This is the sshd server system-wide configuration file.  See
+# sshd_config(5) for more information.
+
+#Set SSH port number
+Port 22
+
+# The default requires explicit activation of protocol 1
+Protocol 2
+
+# Only suppport IPv4 connections
+AddressFamily inet
+
+# HostKey /etc/ssh/ssh_host_key
+HostKey /etc/ssh/ssh_host_rsa_key
+HostKey /etc/ssh/ssh_host_ecdsa_key
+HostKey /etc/ssh/ssh_host_ed25519_key
+
+# Logging
+SyslogFacility AUTHPRIV
+LogLevel INFO
+
+# Authentication:
+LoginGraceTime 60
+PermitRootLogin yes
+StrictModes yes
+MaxAuthTries 6
+MaxSessions 30
+
+# The default is to check both .ssh/authorized_keys and .ssh/authorized_keys2
+# but this is overridden so installations will only check .ssh/authorized_keys
+AuthorizedKeysFile .ssh/authorized_keys
+
+# For this to work you will also need host keys in /etc/ssh/ssh_known_hosts
+RhostsRSAAuthentication no
+# similar for protocol version 2
+HostbasedAuthentication no
+# Change to yes if you don't trust ~/.ssh/known_hosts for
+# RhostsRSAAuthentication and HostbasedAuthentication
+IgnoreUserKnownHosts yes
+# Don't read the user's ~/.rhosts and ~/.shosts files
+IgnoreRhosts yes
+
+# To disable tunneled clear text passwords, change to no here!
+PermitEmptyPasswords no
+PasswordAuthentication yes
+
+# Change to no to disable s/key passwords
+ChallengeResponseAuthentication no
+
+GSSAPIAuthentication no
+GSSAPICleanupCredentials no
+UsePAM yes
+AllowAgentForwarding no
+AllowTcpForwarding no
+PermitTunnel no
+X11Forwarding no
+PermitTTY yes
+PrintMotd yes
+PrintLastLog yes
+TCPKeepAlive yes
+UsePrivilegeSeparation yes
+PermitUserEnvironment no
+# Send network heardbeat to client every N seconds
+ClientAliveInterval 600
+# Number of timeouts before client is disconnected
+ClientAliveCountMax 4
+UseDNS no
+MaxStartups 10:30:100
+
+# Accept locale-related environment variables
+AcceptEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES
+AcceptEnv LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT
+AcceptEnv LC_IDENTIFICATION LC_ALL LANGUAGE
+AcceptEnv XMODIFIERS

@@ -1,0 +1,24 @@
+---
+
+# https://github.com/ns-phennessy/tf2-sourcemod-gamemodemenu
+- name: Install Gamemodemenu Plugin
+  unarchive:
+    src: files/gamemodemenu.tar.gz
+    dest: "{{ srcds_root_dir }}/tf2/tf/"
+    owner: steam
+    group: steam
+
+- name: Install Gamemodemenu Configs
+  unarchive:
+    src: files/configs.tar.gz
+    dest: "{{ srcds_root_dir }}/tf2/tf/"
+    owner: "{{ srcds_user }}"
+    group: "{{ srcds_user }}"
+
+- name: Install gamemodes.ini
+  template:
+    src: files/gamemodes.ini
+    dest: "{{ srcds_root_dir }}/tf2/tf/"
+    owner: "{{ srcds_user }}"
+    group: "{{ srcds_user }}"
+    mode: 0644   

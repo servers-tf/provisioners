@@ -1,0 +1,10 @@
+---
+
+# https://forums.alliedmods.net/showthread.php?p=1983621
+- name: Install Botmanager Plugin
+  unarchive:
+    src: files/botmanager.tar.gz
+    dest: "{{ srcds_root_dir }}/tf2/tf/"
+    owner: steam
+    group: steam
+

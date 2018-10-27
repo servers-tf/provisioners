@@ -1,0 +1,17 @@
+---
+- name: Install Utility Packages
+  apt:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+    - htop
+    - wget
+    - psmisc
+    - lsof
+    - vim
+    - unzip
+    - tree
+    - sysstat
+    - jq
+

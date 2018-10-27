@@ -1,0 +1,111 @@
+---
+
+- name: Create {{ srcds_user }} user
+  user:
+    name: "{{ srcds_user }}"
+    state: present
+
+- name: Steam user home permissions
+  file:
+    path: "/home/{{ srcds_user }}/"
+    state: directory
+    owner: "{{ srcds_user }}"
+    group: "{{ srcds_user }}"
+
+- name: Create working directories
+  file:
+    path: "{{ srcds_root_dir }}"
+    state: directory
+    owner: "{{ srcds_user }}"
+    group: "{{ srcds_user }}"
+
+- name: Set arch
+  shell: dpkg --add-architecture i386; apt-get update
+
+- name: Install steamcmd prereq's
+  apt:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+    - lib32gcc1
+    - lib32tinfo5
+    - libstdc++6
+    - libstdc++6:i386
+    - libcurl4-openssl-dev
+    - libtcmalloc-minimal4:i386
+    - sqlite3
+    - gdb
+    - util-linux
+    - ca-certificates
+    - binutils
+    - bc
+
+# not sure why but this must be put on a second step, else it fails to install and silently errors
+- name: Install steamcmd prereq's
+  apt:
+    name: "libcurl4-gnutls-dev:i386"
+    state: latest
+
+- name: Download steamcmd from Valve
+  unarchive:
+    src: http://media.steampowered.com/client/steamcmd_linux.tar.gz
+    dest: "{{ srcds_root_dir }}"
+    copy: no
+    owner: "{{ srcds_user }}"
+    group: "{{ srcds_user }}"
+
+- command: "chown -R steam:steam  {{ srcds_root_dir }}"
+
+- name: Install TF2 dedicated server
+  command: "{{srcds_root_dir}}/steamcmd.sh +login anonymous +force_install_dir {{ srcds_root_dir }}/tf2 +app_update 232250 +quit"
+  become_user: "{{ srcds_user }}"
+
+- name: Copy TF2 systemd unit
+  template:
+    src: templates/lib/systemd/system/tf2.service.j2
+    dest: /lib/systemd/system/tf2.service
+    owner: root
+    group: root
+    mode: 0600
+
+- name: Enable TF2 service
+  service:
+     name: tf2
+     enabled: yes
+
+# Optional install nginx for map downloading
+- name: Create Nginx user
+  when: http_root is defined
+  user:
+    name: nginx
+    state: present
+
+- name: Install Nginx
+  when: http_root is defined
+  apt:
+    name: "nginx"
+    state: latest
+
+- name: Copy TF2 Nginx config
+  when: http_root is defined
+  template:
+    src: templates/etc/nginx/sites-available/tf2.conf.j2
+    dest: /etc/nginx/sites-available/tf2.conf
+    owner: nginx
+    group: nginx
+    mode: 0644
+
+- name: Enable TF2 NginX config
+  when: http_root is defined
+  file:
+    src: /etc/nginx/sites-available/tf2.conf
+    dest: /etc/nginx/sites-enabled/tf2.conf
+    owner: nginx
+    group: nginx
+    state: link
+
+- name: Remove default site
+  ignore_errors: yes
+  when: http_root is defined
+  command: rm /etc/nginx/sites-enabled/default

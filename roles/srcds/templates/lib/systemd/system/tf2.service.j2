@@ -1,0 +1,30 @@
+[Unit]
+Description=Team Fortress 2 - Source Dedicated Server
+
+[Service]
+Type=forking
+User={{ srcds_user }}
+Group={{ srcds_user }}
+
+# Run update before starting in a tmux session
+ExecStartPre={{ srcds_root_dir }}/steamcmd.sh +login anonymous +force_install_dir {{ srcds_root_dir }}/tf2 +app_update 232250 +quit
+ExecStart=/usr/bin/tmux -S {{ srcds_root_dir }}/tf2/tmux.sock new-session -d -n "tf2" -s "srcds" "{{ srcds_root_dir }}/tf2/srcds_run -debug -game tf +ip 0.0.0.0 -port 27015 +map cp_sunshine"
+ExecStop=/usr/bin/tmux -S {{ srcds_root_dir }}/tf2/tmux.sock send -t "srcds" "say Server shutting down in 10 seconds!" ENTER \
+        && sleep 10 \
+        && /usr/bin/tmux -S {{ srcds_root_dir }}/tf2/tmux.sock send -t "srcds" "quit" ENTER
+
+# Restarting
+KillSignal=SIGCONT
+TimeoutStartSec=0
+TimeoutStopSec=10
+Restart=on-failure
+RestartSec=10
+
+# Security Settings
+PrivateTmp=true
+PrivateDevices=false
+#MemoryLimit=750M
+DevicePolicy=closed
+
+[Install]
+WantedBy=default.target

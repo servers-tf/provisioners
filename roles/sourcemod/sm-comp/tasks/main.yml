@@ -1,0 +1,9 @@
+---
+
+# http://etf2l.org/forum/customise/topic-27485/
+- name: Install F2 Comp Plugin's
+  unarchive:
+    src: files/f2comp.tar.gz
+    dest: "{{ srcds_root_dir }}/tf2/tf/"
+    owner: steam
+    group: steam

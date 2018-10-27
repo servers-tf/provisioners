@@ -1,0 +1,12 @@
+---
+
+# Curl ## comes with sm?
+# https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/sourcemod-curl-extension/curl_1.3.0.0_linux.zip
+# https://forums.alliedmods.net/showpost.php?p=2197681&postcount=101
+# http://csgottt.com/curl.zip
+- name: Install Curl Plugin
+  unarchive:
+    src: "files/curl.tar.gz"
+    dest: "{{ srcds_root_dir }}/tf2/tf/"
+    owner: steam
+    group: steam

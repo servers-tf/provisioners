@@ -1,0 +1,59 @@
+"umc_rotation"
+{   
+    "Payload"
+    {   
+        "group_weight"  "5"
+        "maps_invote"   "3"
+             
+        "pl_millstone_event" {}             
+        "pl_fifthcurve_event" {}
+             
+        // Community Maps
+        "pl_crag_event_d" {}
+        "pl_frankensteins_castle_v3" {}
+    }
+    
+    "King of the Hill"
+    {   
+        "group_weight"  "3"
+        "maps_invote"   "2"
+        
+        "koth_lakeside_event" {}
+        "koth_harvest_event" {}
+        "koth_maple_ridge_event" {}     
+        "koth_moonshine_event" {}     
+        "koth_viaduct_event" {}     
+        
+        // Community Maps 
+        "koth_bagel_event" {}
+        "koth_badlands_event" {}
+        "koth_deathcliff_event" {}
+        "koth_kongking_event" {}
+        "koth_megalo_rc2" {}
+        "koth_slasher_rc2" {}
+    }
+    
+    "Control Point"
+    {   
+        "group_weight"  "1"
+        "maps_invote"   "1"
+        
+        "cp_gorge_event" {} 
+        "cp_sunshine_event" {}
+        "cp_manor_event" {}
+        
+        // Community Maps
+        "cp_spookyridge_b7" {}
+        "cp_bloodfall_rc5" {}
+        "cp_degrootcreep" {}   
+    }
+    
+    "Payload Race"
+    {   
+        "group_weight"  "1"
+        "maps_invote"   "0"
+        
+        "plr_hightower_event" {} 
+    }
+
+}

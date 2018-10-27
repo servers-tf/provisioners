@@ -1,0 +1,9 @@
+---
+
+# https://forums.alliedmods.net/showthread.php?t=219898
+- name: Install Scramble Plugin
+  unarchive:
+    src: files/scramble.tar.gz
+    dest: "{{ srcds_root_dir }}/tf2/tf/"
+    owner: steam
+    group: steam
