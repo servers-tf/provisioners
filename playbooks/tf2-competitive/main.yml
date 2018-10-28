@@ -128,4 +128,12 @@
         group: telegraf
         mode: 0600
 
-          
+    - name: Cronjob for deleting auto demos (unneeded)
+      cron:
+        name: "Delete auto demos"
+        minute: "*/20"
+        job: "rm {{ srcds_root_dir }}/auto-*.dem"      
+           
+       
+       
+       
