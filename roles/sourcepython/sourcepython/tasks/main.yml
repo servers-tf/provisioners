@@ -1,7 +1,7 @@
 ---
 
 - name: Find Latest SourcePython build
-  shell: "curl --silent http://builds.sourcepython.com/job/Source.Python/lastSuccessfulBuild/artifact/release/ | grep -iEo 'source-python-tf2-[A-Z]+-[0-9]+-20[0-9]+.zip' | uniq"
+  shell: "curl --silent http://downloads.sourcepython.com/ | grep -iPo '(?<=href=\").*source-python-tf2.*.zip' | uniq"
   register: sp
   run_once: true
 
@@ -10,7 +10,7 @@
 
 - name: Install SourcePython
   unarchive:
-    src: "http://builds.sourcepython.com/job/Source.Python/lastSuccessfulBuild/artifact/release/{{ sourcepython_archive }}"
+    src: "http://downloads.sourcepython.com/{{ sourcepython_archive }}"
     dest: "{{ srcds_root_dir }}/tf2/tf/"
     copy: no
     owner: "{{ srcds_user }}"
