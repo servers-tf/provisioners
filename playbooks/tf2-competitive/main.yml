@@ -39,6 +39,7 @@
       - cp_reckoner_rc3
       - cp_snakewater_u14
       - cp_warmfrost_rc1
+      - cp_propaganda_b14    
       - koth_ashville_rc1
       - koth_bagel_rc2a
       - koth_cascade_rc1a
@@ -54,7 +55,7 @@
       - pl_barnblitz_pro6
       - ultiduo_baloo
       - ultiduo_gullywash_b2
-      - ultiduo_lookout_a7    
+      - ultiduo_lookout_a7
   
     - name: Install Sourcemod
       include_role:
@@ -133,7 +134,5 @@
         name: "Delete auto demos"
         minute: "*/20"
         job: "rm {{ srcds_root_dir }}/auto-*.dem"      
-           
-       
-       
+
        
