@@ -7,21 +7,13 @@
     dest: "{{ srcds_root_dir }}/tf2/tf/"
     owner: steam
     group: steam
-    
-- find: 
-    paths: "custom/" 
-    recurse: yes 
-    patterns: "*"
-  register: gamemodemenu_configs
-  
+
 - name: Install Gamemodemenu Configs
-  copy: 
-    src: "{{ item.path }}"
+  unarchive:
+    src: files/configs.tar.gz
     dest: "{{ srcds_root_dir }}/tf2/tf/"
-    owner: "{{ srcds_user }}"
-    group: "{{ srcds_user }}"
-    mode: 0644
-  with_items: "{{ gamemodemenu_configs.files }}"
+    owner: steam
+    group: steam
 
 - name: Install gamemodes.ini
   template:

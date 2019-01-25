@@ -18,7 +18,7 @@ echo "logstf_apikey $LOGSTF_API_KEY" >> $SECRET_CONFIG
 echo "sm_demostf_apikey $DEMOSTF_API_KEY" >> $SECRET_CONFIG
 echo "sv_password $SERVER_PASSWORD" >> $SECRET_CONFIG
 echo "tv_password $SPECTATE_PASSWORD" >> $SECRET_CONFIG
-echo "sv_downloadurl \"http://$PUBLIC_IP_ADDRESS/\"" >> $SECRET_CONFIG
+# echo "sv_downloadurl \"http://$PUBLIC_IP_ADDRESS/\"" >> $SECRET_CONFIG
 
 # Set hostname and location
 HOSTNAME=$(curl $ATTRIBUTES/hostname)
