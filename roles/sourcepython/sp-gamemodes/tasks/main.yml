@@ -1,0 +1,40 @@
+---
+- name: Clone Gamemodes Github repo
+  git:
+    repo: 'https://github.com/scrims-tf/sourcepython-plugins.git'
+    dest: /tmp/scrims-tf-sourcepython-plugins
+
+- name: Create Gamemodes Plugin directories
+  file:
+    path: "{{ srcds_root_dir }}/tf2/tf/{{ item }}"
+    state: directory
+    owner: "{{ srcds_user }}"
+    group: "{{ srcds_user }}"
+  with_items:
+    - addons/source-python/plugins/gamemodes/
+
+- name: Install Gamemodes Plugin
+  copy:
+    src: "/tmp/scrims-tf-sourcepython-plugins/gamemodes/{{ item }}"
+    dest: "{{ srcds_root_dir }}/tf2/tf/addons/source-python/plugins/gamemodes/{{ item }}"
+    owner: "{{ srcds_user }}"
+    group: "{{ srcds_user }}"
+  with_items:
+    - gamemodes.py
+    - info.ini
+
+- name: Install Gamemodemenu Configs
+  unarchive:
+    src: files/configs.tar.gz
+    dest: "{{ srcds_root_dir }}/tf2/tf/"
+    owner: "{{ srcds_user }}"
+    group: "{{ srcds_user }}"
+
+- name: Install gamemodes.json
+  template:
+    src: files/gamemodes.json
+    dest: "{{ srcds_root_dir }}/tf2/tf/"
+    owner: "{{ srcds_user }}"
+    group: "{{ srcds_user }}"
+    mode: 0644 
+    

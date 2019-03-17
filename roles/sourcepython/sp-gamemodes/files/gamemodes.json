@@ -1,0 +1,107 @@
+{
+    "DEFAULT": "Death Match",
+    "UGC 6v6": {
+        "shuffle": false,
+        "maps": [
+            {"name": "Propaganda", "map": "cp_propaganda_b14", "config": "ugc_6v_standard"},
+            {"name": "Gullywash", "map": "cp_gullywash_final1", "config": "ugc_6v_standard"},
+            {"name": "Sunshine", "map": "cp_sunshine", "config": "ugc_6v_standard"},
+            {"name": "Granary", "map": "cp_granary_pro_rc8", "config": "ugc_6v_standard"},
+            {"name": "Foundry", "map": "cp_foundry", "config": "ugc_6v_standard"},
+            {"name": "Vanguard", "map": "cp_vanguard", "config": "ugc_6v_standard"},
+            {"name": "Process", "map": "cp_process_final", "config": "ugc_6v_standard"},
+            {"name": "Cardinal", "map": "cp_cardinal_rc1a", "config": "ugc_6v_standard"},
+            {"name": "Badlands", "map": "cp_prolands_b3b", "config": "ugc_6v_standard"},
+            {"name": "Snakewater", "map": "cp_snakewater_final1", "config": "ugc_6v_standard"},
+            {"name": "Metalworks", "map": "cp_metalworks", "config": "ugc_6v_standard"},
+            {"name": "Reckoner", "map": "cp_reckoner_rc3", "config": "ugc_6v_standard"},
+            {"name": "Bagel", "map": "koth_bagel_rc2a", "config": "ugc_6v_koth"},
+            {"name": "Product", "map": "koth_product_rc8", "config": "ugc_6v_koth"}
+        ]
+    },
+    "UGC Highlander": {
+        "shuffle": false,
+        "maps": [
+            {"name": "Ashville", "map": "koth_ashville_rc1", "config": "ugc_HL_koth"},
+            {"name": "Gullywash", "map": "cp_gullywash_final1", "config": "ugc_HL_standard"},
+            {"name": "Lakeside", "map": "koth_lakeside_final", "config": "ugc_HL_koth"},
+            {"name": "Millstone", "map": "pl_millstone_ugc_7", "config": "ugc_HL_stopwatch"},
+            {"name": "Product", "map": "koth_product_rc8", "config": "ugc_HL_koth"},
+            {"name": "Steel", "map": "cp_steel", "config": "ugc_HL_standard"},
+            {"name": "Upward", "map": "pl_upward", "config": "ugc_HL_stopwatch"},
+            {"name": "Vigil", "map": "pl_vigil_b5", "config": "ugc_HL_stopwatch"}
+        ]
+    },
+    "RGL Prolander": {
+        "shuffle": false,
+        "maps": [
+            {"name": "Ashville", "map": "koth_ashville_rc1", "config": "RGL_koth"},
+            {"name": "Badwater", "map": "pl_badwater_pro_v12", "config": "RGL_stopwatch"},
+            {"name": "Borneo", "map": "pl_borneo", "config": "RGL_stopwatch"},
+            {"name": "Cascade", "map": "koth_cascade_rc1a", "config": "RGL_koth"},
+            {"name": "Coalplant", "map": "koth_coalplant_b8", "config": "RGL_koth"},
+            {"name": "Lakeside", "map": "koth_lakeside_final", "config": "RGL_koth"},
+            {"name": "Product", "map": "koth_product_rc8", "config": "RGL_koth"},
+            {"name": "Swiftwater", "map": "pl_swiftwater", "config": "RGL_stopwatch"},
+            {"name": "Upward", "map": "pl_upward", "config": "RGL_stopwatch"}
+        ]
+    },
+    "TFCL Ultiduo": {
+        "shuffle": false,
+        "maps": [
+            {"name": "Baloo", "map": "ultiduo_baloo", "config": "tfcl_ultiduo_standard"},
+            {"name": "Ultiduo R", "map": "koth_ultiduo_r_b7", "config": "tfcl_ultiduo_standard"},
+            {"name": "Lookout", "map": "ultiduo_lookout_a6", "config": "tfcl_ultiduo_standard"},
+            {"name": "Gullywash", "map": "ultiduo_gullywash_b2", "config": "tfcl_ultiduo_standard"}
+        ]
+    },
+    "Ready Steady Pan!": {
+        "shuffle": false,
+        "maps": [
+            {"name": "Trainsawlaser", "map": "koth_trainsawlaser", "config": "rsp_koth"},
+            {"name": "Product", "map": "koth_trainsawlaser", "config": "rsp_koth"},
+            {"name": "Sandstone", "map": "koth_sandstone", "config": "rsp_koth"}
+        ]
+    },
+    "MGE": {
+        "shuffle": false,
+        "maps": [
+            {"name": "MGE Training", "map": "mge_training_v8_beta4b", "config": "mge"},
+            {"name": "Oihguv", "map": "mge_oihguv_sucks_a12", "config": "mge"},
+            {"name": "BBall", "map": "mge_bball_v2", "config": "mge"},
+            {"name": "Chillypunch", "map": "mge_chillypunch_final3", "config": "mge_chilly"}
+        ]
+    },
+    "Death Match": {
+        "shuffle": true,
+        "maps": [
+            {"name": "Ashville", "map": "koth_ashville_rc1", "config": "deathmatch"},
+            {"name": "Badlands", "map": "cp_badlands", "config": "deathmatch"},
+            {"name": "Badwater", "map": "pl_badwater_pro_v12", "config": "deathmatch"},
+            {"name": "Bagel", "map": "koth_bagel_rc2a", "config": "deathmatch"},
+            {"name": "Barnbiltz", "map": "pl_barnblitz_pro6", "config": "deathmatch"},
+            {"name": "Borneo", "map": "pl_borneo", "config": "deathmatch"},
+            {"name": "Cascade", "map": "koth_cascade_rc1a", "config": "deathmatch"},
+            {"name": "Coldfront", "map": "cp_coldfront", "config": "deathmatch"},
+            {"name": "Foundry", "map": "cp_foundry", "config": "deathmatch"},
+            {"name": "Freight", "map": "cp_freight_final1", "config": "deathmatch"},
+            {"name": "Granary", "map": "cp_granary_pro_rc8", "config": "deathmatch"},
+            {"name": "Gravelpit", "map": "cp_gravelpit", "config": "deathmatch"},
+            {"name": "Gullywash", "map": "cp_gullywash_final1", "config": "deathmatch"},
+            {"name": "Metalworks", "map": "cp_metalworks", "config": "deathmatch"},
+            {"name": "Obscure", "map": "cp_obscure_final", "config": "deathmatch"},
+            {"name": "Process", "map": "cp_process_final", "config": "deathmatch"},
+            {"name": "Product", "map": "koth_product_rc8", "config": "deathmatch"},
+            {"name": "Propaganda", "map": "cp_propaganda_b14", "config": "deathmatch"},
+            {"name": "Reckoner", "map": "cp_reckoner_rc3", "config": "deathmatch"},
+            {"name": "Sandstone", "map": "koth_sandstone_pro_rc1", "config": "deathmatch"},
+            {"name": "Snakewater", "map": "cp_snakewater_final1", "config": "deathmatch"},
+            {"name": "Swiftwater", "map": "pl_swiftwater_final1", "config": "deathmatch"},
+            {"name": "Turbine", "map": "ctf_turbine", "config": "deathmatch"},
+            {"name": "Upward", "map": "pl_upward", "config": "deathmatch"},
+            {"name": "Vanguard", "map": "cp_vanguard", "config": "deathmatch"},
+            {"name": "Warmfront", "map": "cp_warmfront", "config": "deathmatch"},
+            {"name": "Yukon", "map": "cp_yukon_final", "config": "deathmatch"}
+        ]
+    }
+}

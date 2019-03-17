@@ -1,0 +1,24 @@
+---
+- name: Clone Reservation Github repo
+  git:
+    repo: 'https://github.com/scrims-tf/sourcepython-plugins.git'
+    dest: /tmp/scrims-tf-sourcepython-plugins
+
+- name: Create Reservation Plugin directories
+  file:
+    path: "{{ srcds_root_dir }}/tf2/tf/{{ item }}"
+    state: directory
+    owner: "{{ srcds_user }}"
+    group: "{{ srcds_user }}"
+  with_items:
+    - addons/source-python/plugins/reservation/
+
+- name: Install Reservation Plugin
+  copy:
+    src: "/tmp/scrims-tf-sourcepython-plugins/reservation/{{ item }}"
+    dest: "{{ srcds_root_dir }}/tf2/tf/addons/source-python/plugins/reservation/{{ item }}"
+    owner: "{{ srcds_user }}"
+    group: "{{ srcds_user }}"
+  with_items:
+    - reservation.py
+    - info.ini

@@ -1,6 +1,7 @@
 from events import Event
 from engines.server import global_vars
 from listeners import *
+from listeners.tick import Repeat
 from listeners.tick import GameThread
 from messages.hooks import HookUserMessage
 from players.entity import Player
@@ -13,9 +14,16 @@ import json
 
 current_map_start = 0
 connected_players = {}
+server_idle_start = -1
+server_idle_duration = 0
+log_players_loop = None
+
 
 def load():
-    log_players()
+    global log_players_loop
+    log_players_loop = Repeat(log_players)
+    log_players_loop.start(5, execute_on_start=True)
+    
 
 def threaded(fn):
     def wrapper(*args, **kwargs):
@@ -207,6 +215,7 @@ def log_team_change(event):
         }
         log_json("player_change_team", message)
 
+@threaded
 def log_players():
     players = bots = spectators = 0
 
@@ -223,6 +232,18 @@ def log_players():
         elif not player.is_bot():
             players += 1
 
+    global server_idle_start
+    global server_idle_duration
+    if players >= 1:
+        server_idle_start = -1
+        server_idle_duration = 0
+    elif players == 0 and spectators < 4 and server_idle_start == -1:
+        server_idle_start = time.time()
+        server_idle_duration = 0
+    elif players == 0 and spectators < 4 and server_idle_start >= 0:
+        server_idle_duration = time.time() - server_idle_start
+
+    log_value("idle", server_idle_duration)
     log_value("players", players)
     log_value("bots", bots)
     log_value("spectators", spectators)

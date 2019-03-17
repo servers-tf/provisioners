@@ -37,8 +37,8 @@
       - cp_kalinka_rc1
       - cp_prolands_b3b
       - cp_reckoner_rc3
-      - cp_snakewater_u14
       - cp_warmfrost_rc1
+      - cp_warmfront
       - cp_propaganda_b14    
       - koth_ashville_rc1
       - koth_bagel_rc2a
@@ -66,15 +66,7 @@
       include_role:
         name: sourcepython
         
-    - name: Install Common Sourcemod Plugins
-      include_role: 
-        name: "{{ item }}"
-      with_items:
-        - sm-vacbans
-        - sm-cannounce
-        - sm-swapteam  
-
-    - name: Install Competitive Sourcemod Plugins
+    - name: Install SourceMod Plugins
       include_role: 
         name: "{{ item }}"
       with_items:
@@ -83,14 +75,17 @@
         - sm-soapdm
         - sm-comp
         - sm-demostf
-        - sm-gamemodemenu
         - sm-meleeonly
 
-    - name: Install Competitive SourcePython Plugins
+    - name: Install SourcePython Plugins
       include_role: 
         name: "{{ item }}"
       with_items:
         - sp-logger
+        - sp-reservation
+        - sp-gamemodes
+        - sp-admin
+        - sp-connect
         
     - name: Install Server config
       template:
@@ -100,12 +95,12 @@
         group: "{{ srcds_user }}"
         mode: 0600   
         
-    - name: Enable SQL Admin Soucemod Plugins
+    - name: Disable Unneeded Soucemod Plugins
       command: "{{ item }}" 
       with_items: 
-        - mv "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/disabled/admin-sql-prefetch.smx" "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/" 
-        - mv "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/disabled/sql-admin-manager.smx" "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/"    
-        
+        - mv "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/funcommands.smx" "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/disabled/" 
+        - mv "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/basevotes.smx" "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/disabled/" 
+
     - name: Upload startup script
       template:
         src: files/opt/startup.sh
@@ -113,6 +108,22 @@
         owner: "root"
         group: "root"
         mode: 0700                  
+
+    - name: Upload shutdown script
+      template:
+        src: files/opt/shutdown.sh
+        dest: "/opt/shutdown.sh"
+        owner: "root"
+        group: "root"
+        mode: 0700  
+
+    - name: Upload cron_shutdown script
+      template:
+        src: files/opt/cron_shutdown.py
+        dest: "/opt/cron_shutdown.py"
+        owner: "root"
+        group: "root"
+        mode: 0700    
 
     - name: Telegraf srcds config
       copy:
@@ -130,10 +141,48 @@
         group: telegraf
         mode: 0600
 
-    - name: Cronjob for deleting auto demos (unneeded)
+    - name: Cronjob for deleting auto demos
       cron:
         name: "Delete auto demos"
         minute: "*/20"
         job: "rm {{ srcds_root_dir }}/auto-*.dem"      
 
-       
+    - name: Cronjob for checking shutdown
+      cron:
+        minute: "*"
+        job: "/usr/bin/python3.6 /opt/check_shutdown.py"      
+
+    - name: Create symlink for tf2
+      file:
+        src: "{{ srcds_root_dir }}/tf2/tf/"
+        dest: "/tf2"
+        owner: "{{ srcds_user }}"
+        group: "{{ srcds_user }}"
+        state: link
+    
+    - name: Add system aliases
+      lineinfile:
+        path: /etc/bash.bashrc
+        line: "{{ item }}"
+        create: yes
+      with_items:
+        - 'alias srcds="/usr/bin/tmux -S /usr/games/steam/tf2/tmux.sock attach"'
+
+    - name: Creates sp auth directory
+      file:
+        path: "{{ srcds_root_dir }}/tf2/tf/cfg/source-python/auth/"
+        state: directory
+        owner: "{{ srcds_user }}"
+        group: "{{ srcds_user }}"
+        recurse: yes
+
+    - name: Install sp auth configs
+      copy:
+        src: "files/auth/{{ item }}"
+        dest: "{{ srcds_root_dir }}/tf2/tf/cfg/source-python/auth/{{ item }}"
+        owner: "{{ srcds_user }}"
+        group: "{{ srcds_user }}"
+      with_items:
+        - players.json
+        - parents.json
+        - simple.txt

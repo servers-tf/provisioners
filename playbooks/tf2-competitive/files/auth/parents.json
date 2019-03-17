@@ -1,0 +1,11 @@
+{
+    "administrator": {
+        "permissions": ["*"]
+    },
+    "pug_admin": {
+        "permissions": ["*"]
+    },
+    "reservation": {
+        "permissions": ["*"]
+    }
+}

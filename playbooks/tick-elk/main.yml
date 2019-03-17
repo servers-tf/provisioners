@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  become: true
+  connection: local
+  gather_facts: no
+
+  roles:
+    - role: utils
+    - role: security
+    - role: monitoring
+
+  tasks:
+    - name: Install Chronograph, Influx DB, & Kapacitor
+      apt:
+        deb: "{{ item }}"
+      with_items:
+        - https://dl.influxdata.com/influxdb/releases/influxdb_1.6.4_amd64.deb
+        - https://dl.influxdata.com/chronograf/releases/chronograf_1.6.2_amd64.deb
+        - https://dl.influxdata.com/kapacitor/releases/kapacitor_1.5.1_amd64.deb
+        

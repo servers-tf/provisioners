@@ -1,0 +1,24 @@
+---
+- name: Clone Connect Github repo
+  git:
+    repo: 'https://github.com/scrims-tf/sourcepython-plugins.git'
+    dest: /tmp/scrims-tf-sourcepython-plugins
+
+- name: Create Connect Plugin directories
+  file:
+    path: "{{ srcds_root_dir }}/tf2/tf/{{ item }}"
+    state: directory
+    owner: "{{ srcds_user }}"
+    group: "{{ srcds_user }}"
+  with_items:
+    - addons/source-python/plugins/connect/
+
+- name: Install Connect Plugin
+  copy:
+    src: "/tmp/scrims-tf-sourcepython-plugins/connect/{{ item }}"
+    dest: "{{ srcds_root_dir }}/tf2/tf/addons/source-python/plugins/connect/{{ item }}"
+    owner: "{{ srcds_user }}"
+    group: "{{ srcds_user }}"
+  with_items:
+    - connect.py
+    - info.ini

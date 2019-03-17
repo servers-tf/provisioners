@@ -1,17 +1,24 @@
 ---
+- name: Clone Logger Github repo
+  git:
+    repo: 'https://github.com/scrims-tf/sourcepython-plugins.git'
+    dest: /tmp/scrims-tf-sourcepython-plugins
+
 - name: Create Logger Plugin directories
   file:
     path: "{{ srcds_root_dir }}/tf2/tf/{{ item }}"
     state: directory
-    owner: root
-    group: root
+    owner: "{{ srcds_user }}"
+    group: "{{ srcds_user }}"
   with_items:
     - addons/source-python/plugins/logger/
 
 - name: Install Logger Plugin
   copy:
-    src: files/addons/source-python/plugins/logger/logger.py
-    dest: "{{ srcds_root_dir }}/tf2/tf/addons/source-python/plugins/logger/logger.py"
-    owner: steam
-    group: steam
-
+    src: "/tmp/scrims-tf-sourcepython-plugins/logger/{{ item }}"
+    dest: "{{ srcds_root_dir }}/tf2/tf/addons/source-python/plugins/logger/{{ item }}"
+    owner: "{{ srcds_user }}"
+    group: "{{ srcds_user }}"
+  with_items:
+    - logger.py
+    - info.ini

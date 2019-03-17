@@ -17,8 +17,8 @@
             "image_family": "{{user `playbook`}}",
             "instance_name": "packer-{{user `playbook`}}-{{uuid}}",
             "disk_size": 20,
-            "preemptible": true,
-            "tags": ["gameserver-subnet"]
+            "preemptible": false,
+            "tags": ["sandbox-subnet"]
         }
     ],
     "provisioners": [
@@ -70,7 +70,11 @@
                 "roles/sourcemod/sm-vacbans",
                 "roles/sourcemod/sourcemod",
                 "roles/sourcepython/sourcepython",
-                "roles/sourcepython/sp-logger"
+                "roles/sourcepython/sp-logger",
+                "roles/sourcepython/sp-admin",
+                "roles/sourcepython/sp-reservation",
+                "roles/sourcepython/sp-gamemodes",
+                "roles/sourcepython/sp-connect"
             ]
         }
     ]
