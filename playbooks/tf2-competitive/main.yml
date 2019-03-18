@@ -150,7 +150,7 @@
     - name: Cronjob for checking shutdown
       cron:
         minute: "*"
-        job: "/usr/bin/python3.6 /opt/check_shutdown.py"      
+        job: "/usr/bin/python3.6 /opt/cron_shutdown.py"      
 
     - name: Create symlink for tf2
       file:

@@ -22,7 +22,7 @@ def main():
     if elapsed >= 60*60*24:
         print("calling for hard shutdown")
         alert()
-        subprocess.run(f'systemctl stop tf2', shell=True, check=True)
+        subprocess.run(f'/bin/bash /opt/shutdown.sh', shell=True, check=True)
     
     remaining = int(ttl - elapsed if ttl > elapsed else 0) / 60
 
@@ -37,7 +37,7 @@ def main():
     elif remaining == 0:
         print("calling for shutdown")
         alert()
-        subprocess.run(f'systemctl stop tf2', shell=True, check=True)
+        subprocess.run(f'/bin/bash /opt/shutdown.sh', shell=True, check=True)
             
 def shutdown_alert(minutes):
     socket_file = "/usr/games/steam/tf2/tmux.sock"
