@@ -141,12 +141,6 @@
         group: telegraf
         mode: 0600
 
-    - name: Cronjob for deleting auto demos
-      cron:
-        name: "Delete auto demos"
-        minute: "*/20"
-        job: "rm {{ srcds_root_dir }}/auto-*.dem"      
-
     - name: Cronjob for checking shutdown
       cron:
         minute: "*"

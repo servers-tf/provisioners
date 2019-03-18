@@ -22,7 +22,7 @@ def main():
     if elapsed >= 60*60*24:
         print("calling for hard shutdown")
         alert()
-        subprocess.run(f'/bin/bash /opt/shutdown.sh', shell=True, check=True)
+        subprocess.run('/bin/bash /opt/shutdown.sh', shell=True, check=True)
     
     remaining = int(ttl - elapsed if ttl > elapsed else 0) / 60
 
@@ -37,15 +37,18 @@ def main():
     elif remaining == 0:
         print("calling for shutdown")
         alert()
-        subprocess.run(f'/bin/bash /opt/shutdown.sh', shell=True, check=True)
-            
+        subprocess.run('/bin/bash /opt/shutdown.sh', shell=True, check=True)
+
 def shutdown_alert(minutes):
     socket_file = "/usr/games/steam/tf2/tmux.sock"
     subprocess.run(f'/usr/bin/tmux -S {socket_file} send -t "srcds" "shutdown_alert {minutes}" ENTER', shell=True, check=True)
 
 def alert():
-    socket_file = "/usr/games/steam/tf2/tmux.sock"
-    subprocess.run(f'/usr/bin/tmux -S {socket_file} send -t srcds \'alert \"Reservation has ended, server is shutting down.\"\' ENTER', shell=True, check=True)
+    try:
+        socket_file = "/usr/games/steam/tf2/tmux.sock"
+        subprocess.run(f'/usr/bin/tmux -S {socket_file} send -t srcds \'alert \"Reservation has ended, server is shutting down.\"\' ENTER', shell=True, check=True)
+    except Exception:
+        pass
 
 if __name__ == '__main__':
     main()
