@@ -32,3 +32,5 @@ echo "tv_password $spectate_password" >> $SECRET_CONFIG
 
 echo "sp_location ${LOCATION[$ZONE]}" >> $SECRET_CONFIG
 echo "sp_hostname ${hostname^}" >> $SECRET_CONFIG
+
+chown steam:steam $ATTRIBUTES_FILE
