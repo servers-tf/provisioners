@@ -14,7 +14,7 @@
             {"name": "Badlands", "map": "cp_prolands_b3b", "config": "ugc_6v_standard"},
             {"name": "Snakewater", "map": "cp_snakewater_final1", "config": "ugc_6v_standard"},
             {"name": "Metalworks", "map": "cp_metalworks", "config": "ugc_6v_standard"},
-            {"name": "Reckoner", "map": "cp_reckoner_rc3", "config": "ugc_6v_standard"},
+            {"name": "Reckoner", "map": "cp_reckoner_rc4a", "config": "ugc_6v_standard"},
             {"name": "Bagel", "map": "koth_bagel_rc2a", "config": "ugc_6v_koth"},
             {"name": "Product", "map": "koth_product_rc8", "config": "ugc_6v_koth"}
         ]
@@ -93,7 +93,7 @@
             {"name": "Process", "map": "cp_process_final", "config": "deathmatch"},
             {"name": "Product", "map": "koth_product_rc8", "config": "deathmatch"},
             {"name": "Propaganda", "map": "cp_propaganda_b14", "config": "deathmatch"},
-            {"name": "Reckoner", "map": "cp_reckoner_rc3", "config": "deathmatch"},
+            {"name": "Reckoner", "map": "cp_reckoner_rc4a", "config": "deathmatch"},
             {"name": "Sandstone", "map": "koth_sandstone_pro_rc1", "config": "deathmatch"},
             {"name": "Snakewater", "map": "cp_snakewater_final1", "config": "deathmatch"},
             {"name": "Swiftwater", "map": "pl_swiftwater_final1", "config": "deathmatch"},
