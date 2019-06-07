@@ -23,6 +23,13 @@
     - gamemodes.py
     - info.ini
 
+- name: Install Gamemodes Configs
+  file:
+    src: "files/endround.cfg"
+    dest: "{{ srcds_root_dir }}/tf2/tf/cfg/endround.cfg"
+    owner: "{{ srcds_user }}"
+    group: "{{ srcds_user }}"
+
 - name: Install Gamemodemenu Configs
   unarchive:
     src: files/configs.tar.gz
