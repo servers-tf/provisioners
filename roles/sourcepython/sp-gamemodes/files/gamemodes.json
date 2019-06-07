@@ -1,5 +1,31 @@
 {
     "DEFAULT": "Death Match",
+     "RGL 6v6 (No Restrictions)": {
+        "shuffle": false,
+        "maps": [
+            {"name": "Propaganda", "map": "cp_propaganda_b14", "config": "RGL_mm_5cp"},
+            {"name": "Gullywash", "map": "cp_gullywash_final1", "config": "RGL_mm_5cp"},
+            {"name": "Sunshine", "map": "cp_sunshine", "config": "RGL_mm_5cp"},
+            {"name": "Granary", "map": "cp_granary_pro_rc8", "config": "RGL_mm_5cp"},
+            {"name": "Foundry", "map": "cp_foundry", "config": "RGL_mm_5cp"},
+            {"name": "Vanguard", "map": "cp_vanguard", "config": "RGL_mm_5cp"},
+            {"name": "Process", "map": "cp_process_final", "config": "RGL_mm_5cp"},
+            {"name": "Cardinal", "map": "cp_cardinal_rc1a", "config": "RGL_mm_5cp"},
+            {"name": "Badlands", "map": "cp_prolands_b3b", "config": "RGL_mm_5cp"},
+            {"name": "Snakewater", "map": "cp_snakewater_final1", "config": "RGL_mm_5cp"},
+            {"name": "Metalworks", "map": "cp_metalworks", "config": "RGL_mm_5cp"},
+            {"name": "Reckoner", "map": "cp_reckoner_rc4a", "config": "RGL_mm_5cp"},
+            {"name": "Bagel", "map": "koth_bagel_rc2a", "config": "RGL_mm_koth"},
+            {"name": "Product", "map": "koth_product_rc8", "config": "RGL_mm_koth"},
+            {"name": "Lakeside", "map": "koth_lakeside_final", "config": "RGL_mm_koth"},
+            {"name": "Upward", "map": "pl_upward", "config": "RGL_mm_stopwatch"},
+            {"name": "Ashville", "map": "koth_ashville_rc1", "config": "RGL_mm_koth"},
+            {"name": "Badwater", "map": "pl_badwater_pro_v12", "config": "RGL_mm_stopwatch"},
+            {"name": "Borneo", "map": "pl_borneo", "config": "RGL_mm_stopwatch"},
+            {"name": "Cascade", "map": "koth_cascade_rc1a", "config": "RGL_mm_koth"},
+            {"name": "Coalplant", "map": "koth_coalplant_b8", "config": "RGL_mm_koth"}
+        ]
+    },
     "UGC 6v6": {
         "shuffle": false,
         "maps": [
