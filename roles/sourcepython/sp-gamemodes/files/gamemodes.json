@@ -16,7 +16,7 @@
             {"name": "Metalworks", "map": "cp_metalworks", "config": "RGL_mm_5cp"},
             {"name": "Reckoner", "map": "cp_reckoner_rc4a", "config": "RGL_mm_5cp"},
             {"name": "Bagel", "map": "koth_bagel_rc2a", "config": "RGL_mm_koth"},
-            {"name": "Product", "map": "koth_product_rc8", "config": "RGL_mm_koth"},
+            {"name": "Product", "map": "koth_product_rcx", "config": "RGL_mm_koth"},
             {"name": "Lakeside", "map": "koth_lakeside_final", "config": "RGL_mm_koth"},
             {"name": "Upward", "map": "pl_upward", "config": "RGL_mm_stopwatch"},
             {"name": "Ashville", "map": "koth_ashville_rc1", "config": "RGL_mm_koth"},
@@ -42,7 +42,7 @@
             {"name": "Metalworks", "map": "cp_metalworks", "config": "ugc_6v_standard"},
             {"name": "Reckoner", "map": "cp_reckoner_rc4a", "config": "ugc_6v_standard"},
             {"name": "Bagel", "map": "koth_bagel_rc2a", "config": "ugc_6v_koth"},
-            {"name": "Product", "map": "koth_product_rc8", "config": "ugc_6v_koth"}
+            {"name": "Product", "map": "koth_product_rcx", "config": "ugc_6v_koth"}
         ]
     },
     "UGC Highlander": {
@@ -52,7 +52,7 @@
             {"name": "Gullywash", "map": "cp_gullywash_final1", "config": "ugc_HL_standard"},
             {"name": "Lakeside", "map": "koth_lakeside_final", "config": "ugc_HL_koth"},
             {"name": "Millstone", "map": "pl_millstone_ugc_7", "config": "ugc_HL_stopwatch"},
-            {"name": "Product", "map": "koth_product_rc8", "config": "ugc_HL_koth"},
+            {"name": "Product", "map": "koth_product_rcx", "config": "ugc_HL_koth"},
             {"name": "Steel", "map": "cp_steel", "config": "ugc_HL_standard"},
             {"name": "Upward", "map": "pl_upward", "config": "ugc_HL_stopwatch"},
             {"name": "Vigil", "map": "pl_vigil_b5", "config": "ugc_HL_stopwatch"}
@@ -67,7 +67,7 @@
             {"name": "Cascade", "map": "koth_cascade_rc1a", "config": "RGL_koth"},
             {"name": "Coalplant", "map": "koth_coalplant_b8", "config": "RGL_koth"},
             {"name": "Lakeside", "map": "koth_lakeside_final", "config": "RGL_koth"},
-            {"name": "Product", "map": "koth_product_rc8", "config": "RGL_koth"},
+            {"name": "Product", "map": "koth_product_rcx", "config": "RGL_koth"},
             {"name": "Swiftwater", "map": "pl_swiftwater", "config": "RGL_stopwatch"},
             {"name": "Upward", "map": "pl_upward", "config": "RGL_stopwatch"}
         ]
@@ -117,7 +117,7 @@
             {"name": "Metalworks", "map": "cp_metalworks", "config": "deathmatch"},
             {"name": "Obscure", "map": "cp_obscure_final", "config": "deathmatch"},
             {"name": "Process", "map": "cp_process_final", "config": "deathmatch"},
-            {"name": "Product", "map": "koth_product_rc8", "config": "deathmatch"},
+            {"name": "Product", "map": "koth_product_rcx", "config": "deathmatch"},
             {"name": "Propaganda", "map": "cp_propaganda_b14", "config": "deathmatch"},
             {"name": "Reckoner", "map": "cp_reckoner_rc4a", "config": "deathmatch"},
             {"name": "Sandstone", "map": "koth_sandstone_pro_rc1", "config": "deathmatch"},
