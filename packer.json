@@ -8,7 +8,7 @@
             "account_file": "/home/phennessy517/account.json",
             "type": "googlecompute",
             "project_id": "{{user `project_id`}}",
-            "source_image":  "ubuntu-1804-bionic-v20180613",
+            "source_image":  "ubuntu-1804-bionic-v20190617",
             "source_image_family": "ubuntu-1804-lts",
             "ssh_username": "packer",
             "subnetwork": "projects/tf2-servers/regions/us-central1/subnetworks/sandbox-subnet",
