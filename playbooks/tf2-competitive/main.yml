@@ -87,6 +87,7 @@
         - sp-gamemodes
         - sp-admin
         - sp-connect
+        - sp-logstfdiscord
         
     - name: Install Server config
       template:

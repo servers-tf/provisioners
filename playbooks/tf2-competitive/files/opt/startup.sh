@@ -25,6 +25,9 @@ done
 
 echo "boottime=$(date -d "$(who -b | awk '{print $4,$3}' | tr - / )" +%s)" >> $ATTRIBUTES_FILE
 
+echo "discord_api_key $discord_api_key" >> $SECRET_CONFIG
+echo "discord_channel_id $discord_channel_id" >> $SECRET_CONFIG
+
 echo "logstf_apikey $logstf_api_key" >> $SECRET_CONFIG
 echo "sm_demostf_apikey $demostf_api_key" >> $SECRET_CONFIG
 echo "sv_password $server_password" >> $SECRET_CONFIG
@@ -34,3 +37,4 @@ echo "sp_location ${LOCATION[$ZONE]}" >> $SECRET_CONFIG
 echo "sp_hostname ${hostname^}" >> $SECRET_CONFIG
 
 chown steam:steam $ATTRIBUTES_FILE
+chattr -i $ATTRIBUTES_FILE

@@ -74,7 +74,8 @@
                 "roles/sourcepython/sp-admin",
                 "roles/sourcepython/sp-reservation",
                 "roles/sourcepython/sp-gamemodes",
-                "roles/sourcepython/sp-connect"
+                "roles/sourcepython/sp-connect",
+                "roles/sourcepython/sp-logstfdiscord"
             ]
         }
     ]

@@ -14,4 +14,9 @@
     dest: "{{ srcds_root_dir }}/tf2/tf/"
     copy: no
     owner: "{{ srcds_user }}"
-    group: "{{ srcds_user }}"  
+    group: "{{ srcds_user }}"
+
+- name: Install Python3.6 pip
+  apt:
+    name: python3-pip
+    state: present

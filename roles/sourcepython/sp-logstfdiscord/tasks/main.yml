@@ -1,0 +1,30 @@
+---
+- name: Clone Reservation Github repo
+  git:
+    repo: 'https://github.com/scrims-tf/sourcepython-plugins.git'
+    dest: /tmp/scrims-tf-sourcepython-plugins
+
+- name: Create LogsTF Discord Plugin directories
+  file:
+    path: "{{ srcds_root_dir }}/tf2/tf/{{ item }}"
+    state: directory
+    owner: "{{ srcds_user }}"
+    group: "{{ srcds_user }}"
+  with_items:
+    - addons/source-python/plugins/logstf_discord/
+
+- name: Install LogsTF Discord Plugin
+  copy:
+    src: "/tmp/scrims-tf-sourcepython-plugins/logstf_discord/{{ item }}"
+    dest: "{{ srcds_root_dir }}/tf2/tf/addons/source-python/plugins/logstf_discord/{{ item }}"
+    owner: "{{ srcds_user }}"
+    group: "{{ srcds_user }}"
+  with_items:
+    - logstf_discord.py
+    - info.ini
+    
+- name: Install LogsTF Discord Requirements
+  pip:
+    requirements: /tmp/scrims-tf-sourcepython-plugins/logstf_discord/requirements.txt
+    executable: /usr/bin/pip3
+    extra_args: -t "{{ srcds_root_dir }}/tf2/tf/addons/source-python/packages/custom"
