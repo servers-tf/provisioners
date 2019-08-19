@@ -1,34 +1,68 @@
 {
     "variables": {
-        "project_id": "tf2-servers",
-        "playbook": null
+        "aws_access_key_id": "{{env `AWS_ACCESS_KEY_ID`}}",
+        "aws_secret_access_key": "{{env `AWS_SECRET_ACCESS_KEY`}}"
     },
     "builders": [
         {
-            "account_file": "/home/phennessy517/account.json",
-            "type": "googlecompute",
-            "project_id": "{{user `project_id`}}",
-            "source_image":  "ubuntu-1804-bionic-v20190617",
-            "source_image_family": "ubuntu-1804-lts",
-            "ssh_username": "packer",
-            "subnetwork": "projects/tf2-servers/regions/us-central1/subnetworks/sandbox-subnet",
-            "zone": "us-central1-a",
-            "image_name": "{{user `playbook`}}-{{timestamp}}",
-            "image_family": "{{user `playbook`}}",
-            "instance_name": "packer-{{user `playbook`}}-{{uuid}}",
-            "disk_size": 20,
-            "preemptible": false,
-            "tags": ["sandbox-subnet"]
+            "type": "amazon-ebs",
+            "instance_type": "m5.large",
+            "ami_name": "{{user `playbook`}}-{{isotime | clean_resource_name}}",
+            "ssh_username": "ubuntu",
+            "region": "us-east-2",
+            "access_key": "{{user `aws_access_key_id`}}",
+            "secret_key": "{{user `aws_secret_access_key`}}",
+            "launch_block_device_mappings": [
+                {
+                    "device_name": "/dev/sda1",
+                    "volume_size": 20,
+                    "volume_type": "gp2",
+                    "delete_on_termination": true
+                }
+            ],
+            "source_ami_filter": {
+                "filters": {
+                    "name": "ubuntu/images/*ubuntu-bionic-18.04-amd64-server-*",
+                    "virtualization-type": "hvm",
+                    "root-device-type": "ebs"
+                },
+                "owners": [
+                    "099720109477"
+                ],
+                "most_recent": true
+            },
+            "security_group_filter": {
+                "filters": {
+                    "tag:Name": "Packer SSH"
+                }
+            },
+            "subnet_filter": {
+                "filters": {
+                    "tag:Name": "sandbox"
+                }
+            },
+            "vpc_filter": {
+                "filters": {
+                    "tag:Name": "main"
+                }
+            },
+            "run_tags": {
+                "Name": "Packer Builder - {{user `playbook`}}"
+            },
+            "tags": {
+                "Family": "{{user `playbook`}}",
+                "SourceAMI": "{{ .SourceAMI }}"
+            }
         }
     ],
     "provisioners": [
         {
             "type": "shell",
             "inline": [
-              "sudo apt install software-properties-common",
-              "sudo apt-add-repository --yes ppa:ansible/ansible",
-              "sudo apt update",
-              "sudo apt install --yes ansible"
+                "sudo apt-get install --yes software-properties-common",
+                "sudo apt-add-repository --yes ppa:ansible/ansible",
+                "sudo apt-get update",
+                "sudo apt-get install --yes ansible"
             ]
         },
         {

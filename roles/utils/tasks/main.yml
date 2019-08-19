@@ -14,4 +14,4 @@
     - tree
     - sysstat
     - jq
-
+    - awscli
