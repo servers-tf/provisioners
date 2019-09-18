@@ -1,5 +1,28 @@
 {
     "DEFAULT": "Death Match",
+    "RGL 6v6 (Traditional)": {
+        "shuffle": false,
+        "maps": [
+            {"name": "Propaganda", "map": "cp_propaganda_b14", "config": "rgl_6s_5cp_scrim"},
+            {"name": "Gullywash", "map": "cp_gullywash_final1", "config": "rgl_6s_5cp_scrim"},
+            {"name": "Sunshine", "map": "cp_sunshine", "config": "rgl_6s_5cp_scrim"},
+            {"name": "Granary", "map": "cp_granary_pro_rc8", "config": "rgl_6s_5cp_scrim"},
+            {"name": "Kalinka", "map": "cp_kalinka_rc5", "config": "rgl_6s_5cp_scrim"},
+            {"name": "Foundry", "map": "cp_foundry", "config": "rgl_6s_5cp_scrim"},
+            {"name": "Vanguard", "map": "cp_vanguard", "config": "rgl_6s_5cp_scrim"},
+            {"name": "Process", "map": "cp_process_final", "config": "rgl_6s_5cp_scrim"},
+            {"name": "Cardinal", "map": "cp_cardinal_rc1a", "config": "rgl_6s_5cp_scrim"},
+            {"name": "Badlands", "map": "cp_prolands_b3b", "config": "rgl_6s_5cp_scrim"},
+            {"name": "Snakewater", "map": "cp_snakewater_final1", "config": "rgl_6s_5cp_scrim"},
+            {"name": "Metalworks", "map": "cp_metalworks", "config": "rgl_6s_5cp_scrim"},
+            {"name": "Reckoner", "map": "cp_reckoner_rc4a", "config": "rgl_6s_5cp_scrim"},
+            {"name": "Cascade", "map": "koth_cascade_rc1a", "config": "rgl_6s_koth"},
+            {"name": "Clearcut", "map": "koth_clearcut_b13", "config": "rgl_6s_koth"},
+            {"name": "Warmtic", "map": "koth_warmtic_rc4", "config": "rgl_6s_koth"},
+            {"name": "Bagel", "map": "koth_bagel_rc2a", "config": "rgl_6s_koth"},
+            {"name": "Product", "map": "koth_product_rcx", "config": "rgl_6s_koth"}
+        ]
+    },
      "RGL 6v6 (No Restrictions)": {
         "shuffle": false,
         "maps": [
