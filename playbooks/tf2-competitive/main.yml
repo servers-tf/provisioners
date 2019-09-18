@@ -40,7 +40,7 @@
       - cp_reckoner_rc4a
       - cp_warmfrost_rc1
       - cp_warmfront
-      - cp_propaganda_b14    
+      - cp_propaganda_b14
       - koth_ashville_rc1
       - koth_bagel_rc2a
       - koth_cascade_rc1a
@@ -68,7 +68,7 @@
         name: sourcepython
         
     - name: Install SourceMod Plugins
-      include_role: 
+      include_role:
         name: "{{ item }}"
       with_items:
         - sm-curl
@@ -79,7 +79,7 @@
         - sm-meleeonly
 
     - name: Install SourcePython Plugins
-      include_role: 
+      include_role:
         name: "{{ item }}"
       with_items:
         - sp-logger
@@ -95,13 +95,13 @@
         dest: "{{ srcds_root_dir }}/tf2/tf/cfg/server.cfg"
         owner: "{{ srcds_user }}"
         group: "{{ srcds_user }}"
-        mode: 0600   
+        mode: 0600
         
     - name: Disable Unneeded Soucemod Plugins
-      command: "{{ item }}" 
-      with_items: 
-        - mv "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/funcommands.smx" "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/disabled/" 
-        - mv "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/basevotes.smx" "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/disabled/" 
+      command: "{{ item }}"
+      with_items:
+        - mv "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/funcommands.smx" "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/disabled/"
+        - mv "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/basevotes.smx" "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/disabled/"
 
     - name: Upload startup script
       template:
@@ -109,7 +109,7 @@
         dest: "/opt/startup.sh"
         owner: "root"
         group: "root"
-        mode: 0700                  
+        mode: 0700
 
     - name: Upload shutdown script
       template:
@@ -117,7 +117,7 @@
         dest: "/opt/shutdown.sh"
         owner: "root"
         group: "root"
-        mode: 0700  
+        mode: 0700
 
     - name: Upload cron_shutdown script
       template:
@@ -125,7 +125,7 @@
         dest: "/opt/cron_shutdown.py"
         owner: "root"
         group: "root"
-        mode: 0700    
+        mode: 0700
 
     - name: Telegraf srcds config
       copy:
@@ -146,7 +146,7 @@
     - name: Cronjob for checking shutdown
       cron:
         minute: "*"
-        job: "/usr/bin/python3.6 /opt/cron_shutdown.py"      
+        job: "/usr/bin/python3.6 /opt/cron_shutdown.py"
 
     - name: Create symlink for tf2
       file:
