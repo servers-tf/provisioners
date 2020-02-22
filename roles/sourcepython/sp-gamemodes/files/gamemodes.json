@@ -3,7 +3,7 @@
     "RGL 6v6 (Traditional)": {
         "shuffle": false,
         "maps": [
-            {"name": "Propaganda", "map": "cp_propaganda_b14", "config": "rgl_6s_5cp_scrim"},
+            {"name": "Propaganda", "map": "cp_propaganda_b15", "config": "rgl_6s_5cp_scrim"},
             {"name": "Gullywash", "map": "cp_gullywash_final1", "config": "rgl_6s_5cp_scrim"},
             {"name": "Sunshine", "map": "cp_sunshine", "config": "rgl_6s_5cp_scrim"},
             {"name": "Granary", "map": "cp_granary_pro_rc8", "config": "rgl_6s_5cp_scrim"},
@@ -26,7 +26,7 @@
      "RGL 6v6 (No Restrictions)": {
         "shuffle": false,
         "maps": [
-            {"name": "Propaganda", "map": "cp_propaganda_b14", "config": "RGL_mm_5cp"},
+            {"name": "Propaganda", "map": "cp_propaganda_b15", "config": "RGL_mm_5cp"},
             {"name": "Gullywash", "map": "cp_gullywash_final1", "config": "RGL_mm_5cp"},
             {"name": "Sunshine", "map": "cp_sunshine", "config": "RGL_mm_5cp"},
             {"name": "Granary", "map": "cp_granary_pro_rc8", "config": "RGL_mm_5cp"},
@@ -53,7 +53,7 @@
     "UGC 6v6": {
         "shuffle": false,
         "maps": [
-            {"name": "Propaganda", "map": "cp_propaganda_b14", "config": "ugc_6v_standard"},
+            {"name": "Propaganda", "map": "cp_propaganda_b15", "config": "ugc_6v_standard"},
             {"name": "Gullywash", "map": "cp_gullywash_final1", "config": "ugc_6v_standard"},
             {"name": "Sunshine", "map": "cp_sunshine", "config": "ugc_6v_standard"},
             {"name": "Granary", "map": "cp_granary_pro_rc8", "config": "ugc_6v_standard"},
@@ -144,7 +144,7 @@
             {"name": "Obscure", "map": "cp_obscure_final", "config": "deathmatch"},
             {"name": "Process", "map": "cp_process_final", "config": "deathmatch"},
             {"name": "Product", "map": "koth_product_rcx", "config": "deathmatch"},
-            {"name": "Propaganda", "map": "cp_propaganda_b14", "config": "deathmatch"},
+            {"name": "Propaganda", "map": "cp_propaganda_b15", "config": "deathmatch"},
             {"name": "Reckoner", "map": "cp_reckoner_rc4a", "config": "deathmatch"},
             {"name": "Sandstone", "map": "koth_sandstone_pro_rc1", "config": "deathmatch"},
             {"name": "Snakewater", "map": "cp_snakewater_final1", "config": "deathmatch"},

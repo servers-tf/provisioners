@@ -40,7 +40,7 @@
       - cp_reckoner_rc4a
       - cp_warmfrost_rc1
       - cp_warmfront
-      - cp_propaganda_b14
+      - cp_propaganda_b15
       - koth_ashville_rc1
       - koth_bagel_rc2a
       - koth_cascade_rc1a
@@ -103,6 +103,7 @@
       with_items:
         - mv "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/funcommands.smx" "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/disabled/"
         - mv "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/basevotes.smx" "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/disabled/"
+        - mv "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/nextmap.smx" "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/disabled/"
 
     - name: Upload startup script
       template:
