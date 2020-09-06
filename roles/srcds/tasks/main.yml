@@ -55,7 +55,8 @@
     owner: "{{ srcds_user }}"
     group: "{{ srcds_user }}"
 
-- command: "chown -R steam:steam  {{ srcds_root_dir }}"
+- name: Set srcds root dir to be owned by steam user
+  command: "chown -R steam:steam  {{ srcds_root_dir }}"
 
 - name: Install TF2 dedicated server
   command: "{{srcds_root_dir}}/steamcmd.sh +login anonymous +force_install_dir {{ srcds_root_dir }}/tf2 +app_update 232250 +quit"
@@ -67,6 +68,14 @@
     dest: /lib/systemd/system/tf2.service
     owner: root
     group: root
+    mode: 0600
+    
+- name: Install prexec script
+  template:
+    src: templates/opt/srcds_preexec.sh.j2
+    dest: /opt/srcds_preexec.sh
+    owner: "{{ srcds_user }}"
+    group: "{{ srcds_user }}"
     mode: 0600
 
 - name: Enable TF2 service

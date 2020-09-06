@@ -6,11 +6,11 @@ Type=forking
 User={{ srcds_user }}
 Group={{ srcds_user }}
 
-# Run update before starting in a tmux session
-ExecStartPre={{ srcds_root_dir }}/steamcmd.sh +login anonymous +force_install_dir {{ srcds_root_dir }}/tf2 +app_update 232250 +quit
-ExecStart=/usr/bin/tmux -S {{ srcds_root_dir }}/tf2/tmux.sock new-session -d -n "tf2" -s "srcds" "{{ srcds_root_dir }}/tf2/srcds_run -debug -game tf +ip 0.0.0.0 -port 27015 +map cp_sunshine"
-ExecStop=/usr/bin/tmux -S {{ srcds_root_dir }}/tf2/tmux.sock send -t "srcds" "say Server shutting down in 10 seconds!" ENTER \
-        && sleep 10 \
+# Check update before starting in a tmux session
+ExecStartPre=/bin/bash /opt/srcds_preexec.sh
+ExecStart=/usr/bin/tmux -S {{ srcds_root_dir }}/tf2/tmux.sock new-session -d -n "tf2" -s "srcds" "{{ srcds_root_dir }}/tf2/srcds_run -debug -game tf +ip 0.0.0.0 -port 27015 -timeout 0 -sv_pure 1 +randommap"
+ExecStop=/usr/bin/tmux -S {{ srcds_root_dir }}/tf2/tmux.sock send -t "srcds" "say Server shutting down in 5 seconds!" ENTER \
+        && sleep 4 \
         && /usr/bin/tmux -S {{ srcds_root_dir }}/tf2/tmux.sock send -t "srcds" "quit" ENTER
 
 # Restarting

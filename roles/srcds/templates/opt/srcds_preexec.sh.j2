@@ -1,0 +1,9 @@
+#!/bin/bash
+
+server_version=$(cat {{ srcds_root_dir }}/tf2/tf/steam.inf | grep ServerVersion | cut -f2 -d= | grep -iEo [0-9]+)
+url="https://api.steampowered.com/ISteamApps/UpToDateCheck/v0001/?appid=440&version=$server_version"
+up_to_date=$(curl -s $url | jq .response.up_to_date)
+
+if [[ $up_to_date != "true" ]]; then
+    {{ srcds_root_dir }}/steamcmd.sh +login anonymous +force_install_dir {{ srcds_root_dir }}/tf2 +app_update 232250 +quit
+fi
