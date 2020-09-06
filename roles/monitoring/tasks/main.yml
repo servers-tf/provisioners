@@ -17,7 +17,7 @@
 
 - name: Install Telegraf
   unarchive:
-    src: https://dl.influxdata.com/telegraf/releases/telegraf-1.7.4_linux_amd64.tar.gz
+    src: https://dl.influxdata.com/telegraf/releases/telegraf-1.14.4_linux_amd64.tar.gz
     dest: "/tmp"
     copy: no
     owner: telegraf
@@ -37,13 +37,103 @@
 - name: Enable Telegraf systemd unit
   service:
      name: telegraf
-     enabled: yes      
-    
-- name: Telegraf config file
+     enabled: yes
+
+- name: Telegraf config files
   copy:
-    src: files/etc/telegraf/telegraf.conf
-    dest: /etc/telegraf/telegraf.conf
+    src: "files/{{ item }}"
+    dest: "{{ item }}"
     owner: telegraf
     group: telegraf
     mode: 0600
+  with_items:
+    - /etc/telegraf/telegraf.conf
+    - /etc/telegraf/telegraf.d/system.conf
 
+- name: Install Cloudwatch agent
+  apt:
+    deb: https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb
+
+- name: Cloudwatch config files
+  copy:
+    src: "files/{{ item }}"
+    dest: "{{ item }}"
+    owner: cwagent
+    group: cwagent
+    mode: 0600
+  with_items:
+    - /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json
+
+- name: Enable Cloudwatch systemd unit
+  service:
+     name: amazon-cloudwatch-agent
+     enabled: no
+    
+# - name: Install JRE and Ruby
+#   apt:
+#     name: "{{ packages }}"
+#     state: latest
+#   vars:
+#     packages:
+#     - openjdk-11-jre
+#     - ruby
+#
+# # Using the Elastic version requires a license which the AWS ES cluster does not provide
+# # https://discuss.opendistrocommunity.dev/t/error-during-metricbeat-or-filebeat-setup/644
+# - name: Install Metricbeat-OSS
+#   apt:
+#     deb: https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-oss-6.7.2-amd64.deb
+#
+# - name: Metricbeat config file
+#   copy:
+#     src: "files/{{ item }}"
+#     dest: "{{ item }}"
+#     owner: root
+#     group: root
+#     mode: 0600
+#   with_items:
+#     - /etc/metricbeat/metricbeat.yml        # TODO don't hardcode stuff
+#     - /etc/metricbeat/modules.d/srcds.yml
+#
+# - name: Enable Metricbeat systemd unit
+#   service:
+#     name: metricbeat
+#     enabled: yes
+#
+# # Using the Elastic version requires a license which the AWS ES cluster does not provide
+# # https://discuss.opendistrocommunity.dev/t/error-during-metricbeat-or-filebeat-setup/644
+# - name: Install Filebeat-OSS
+#   apt:
+#     deb: https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-oss-6.7.2-amd64.deb
+#
+# - name: Filebeat config file
+#   copy:
+#     src: "files/{{ item }}"
+#     dest: "{{ item }}"
+#     owner: root
+#     group: root
+#     mode: 0600
+#   with_items:
+#     - /etc/filebeat/filebeat.yml        # TODO don't hardcode stuff
+#
+# - name: Enable Filebeat systemd unit
+#   service:
+#     name: filebeat
+#     enabled: yes
+#
+# - name: Install Logstash
+#   apt:
+#     deb: https://artifacts.elastic.co/downloads/logstash/logstash-7.7.1.deb
+#
+# - name: Enable Logstash systemd unit
+#   service:
+#      name: logstash
+#      enabled: yes
+
+# - name: Logstash config file
+#   copy:
+#     src: files/etc/logstash/telegraf.conf
+#     dest: /etc/logstash/telegraf.conf
+#     owner: logstash
+#     group: logstash
+#     mode: 0600

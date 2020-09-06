@@ -1,0 +1,23 @@
+{
+    "agent": {
+        "logfile": "/opt/aws/amazon-cloudwatch-agent/logs/amazon-cloudwatch-agent.log",
+        "run_as_user": "cwagent",
+        "debug": true
+    },
+    "logs": {
+        "logs_collected": {
+            "files": {
+                "collect_list": [
+                    {
+                        "file_path": "/usr/games/steam/tf2/tf/logs/source-python/connect.log",
+                        "log_group_name": "/tf2-competitive/",
+                        "log_stream_name": "connect",
+                        "timezone": "UTC"
+                    }
+                ]
+            }
+        },
+        "log_stream_name": "/tf2-competitive/default",
+        "force_flush_interval": 15
+    }
+}

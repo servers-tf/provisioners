@@ -1,0 +1,111 @@
+###################### Metricbeat Configuration Example #######################
+
+# This file is an example configuration file highlighting only the most common
+# options. The metricbeat.reference.yml file from the same directory contains all the
+# supported options with more comments. You can use it as a reference.
+#
+# You can find the full configuration reference here:
+# https://www.elastic.co/guide/en/beats/metricbeat/index.html
+
+#==========================  Modules configuration ============================
+metricbeat.config.modules:
+  path: ${path.config}/modules.d/*.yml
+  reload.enabled: false
+  reload.period: 60s
+
+#==================== Elasticsearch template setting ==========================
+setup.template.settings:
+  index.number_of_shards: 1
+  index.codec: best_compression
+  #_source.enabled: false
+
+#================================ General =====================================
+# The name of the shipper that publishes the network data. It can be used to group
+# all the transactions sent by a single shipper in the web interface.
+#name:
+
+# The tags of the shipper are included in their own field with each
+# transaction published.
+#tags: ["service-X", "web-tier"]
+
+# Optional fields that you can specify to add additional information to the
+# output.
+#fields:
+#  env: staging
+
+#============================== Dashboards =====================================
+# These settings control loading the sample dashboards to the Kibana index. Loading
+# the dashboards is disabled by default and can be enabled either by setting the
+# options here, or by using the `-setup` CLI flag or the `setup` command.
+#setup.dashboards.enabled: false
+
+# The URL from where to download the dashboards archive. By default this URL
+# has a value which is computed based on the Beat name and version. For released
+# versions, this URL points to the dashboard archive on the artifacts.elastic.co
+# website.
+#setup.dashboards.url:
+
+#============================== Kibana =====================================
+# Starting with Beats version 6.0.0, the dashboards are loaded via the Kibana API.
+# This requires a Kibana endpoint configuration.
+#setup.kibana:
+  #host: "localhost:5601"
+  #sppace.id:
+
+#================================ Outputs =====================================
+# Configure what output to use when sending the data collected by the beat.
+
+#-------------------------- Elasticsearch output ------------------------------
+output.elasticsearch:
+  # Array of hosts to connect to.
+  hosts: ["elasticsearch.stf.internal:80"]
+
+  # Enabled ilm (beta) to use index lifecycle management instead daily indices.
+  ilm.enabled: false
+  setup.ilm.enabled: false
+
+  # Optional protocol and basic auth credentials.
+  protocol: "http"
+  #username:
+  #password:
+
+#----------------------------- Logstash output --------------------------------
+#output.logstash:
+  # The Logstash hosts
+  #hosts: ["localhost:5044"]
+
+  #ssl.certificate_authorities: ["/etc/pki/root/ca.pem"]
+  #ssl.certificate: "/etc/pki/client/cert.pem"
+  #ssl.key: "/etc/pki/client/cert.key"
+
+#================================ Processors =====================================
+# https://www.elastic.co/guide/en/beats/metricbeat/current/defining-processors.html
+processors:
+  - add_host_metadata: ~
+  - add_cloud_metadata: ~
+  # - add_labels https://www.elastic.co/guide/en/beats/metricbeat/current/add-labels.html
+  # - add_tags https://www.elastic.co/guide/en/beats/metricbeat/current/add-labels.html
+
+#================================ Logging =====================================
+# Sets log level. Levels: error, warning, info (default), debug
+logging.level: info
+
+# At debug level, you can selectively enable logging only for some components.
+# To enable all selectors use ["*"]. Examples of other selectors are "beat",
+# "publish", "service".
+#logging.selectors: ["*"]
+
+#============================== Xpack Monitoring ===============================
+# metricbeat can export internal metrics to a central Elasticsearch monitoring
+# cluster.  This requires xpack monitoring to be enabled in Elasticsearch.  The
+# reporting is disabled by default.
+
+# https://github.com/elastic/beats/issues/8086
+monitoring.enabled: false
+
+# Set to true to enable the monitoring reporter.
+xpack.monitoring.enabled: false
+xpack.security.enabled: false
+xpack.graph.enabled: false
+xpack.watcher.enabled: false
+xpack.reporting.enabled: false

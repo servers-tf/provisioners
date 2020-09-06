@@ -1,0 +1,8 @@
+# Module: srcds
+# Docs: https://www.elastic.co/guide/en/beats/metricbeat/6.7/metricbeat-module-system.html
+
+- module: system
+  metricsets:
+    - process
+  processes:
+    - srcds_linux*
