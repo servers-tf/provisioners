@@ -1,5 +1,7 @@
 {
     "STEAM_0:0:40112661":   {"name": "Zeus",        "parents": ["administrator"]},
+    "STEAM_1:0:28696418":   {"name": "DB",          "parents": ["administrator"]},
+    "STEAM_0:0:72204191":   {"name": "Lecrum",      "parents": ["administrator"]},
     "STEAM_0:1:65986312":   {"name": "DeathToCats", "parents": ["administrator"]},
     "STEAM_0:0:41853114":   {"name": "Cielael",     "parents": ["administrator"]},
     "STEAM_0:0:67826835":   {"name": "Prograde",    "parents": ["administrator"]},
@@ -18,5 +20,7 @@
     "STEAM_0:0:81632268":   {"name": "Blip",        "parents": ["administrator"]},
     "STEAM_0:0:82841058":   {"name": "Yohnny",      "parents": ["administrator"]},
     "STEAM_0:0:132252264":  {"name": "ubwmeta",     "parents": ["administrator"]},
-    "STEAM_0:1:43507840":   {"name": "Yuno",        "parents": ["administrator"]}
+    "STEAM_0:1:43507840":   {"name": "Yuno",        "parents": ["administrator"]},
+    "STEAM_0:1:38697433":  {"name": "BiG",     "parents": ["administrator"]}
+
 }
