@@ -5,7 +5,7 @@
   register: sp
   run_once: true
 
-- set_fact: 
+- set_fact:
     sourcepython_archive={{ sp.stdout }}
 
 - name: Install SourcePython
@@ -20,3 +20,9 @@
   apt:
     name: python3-pip
     state: present
+
+- name: Patch SP
+  replace:
+    path: "{{ srcds_root_dir }}/tf2/tf/addons/source-python/packages/source-python/filters/iterator.py"
+    regexp: 'if not self._filters\[filter_name\]\(item\):'
+    replace: 'if (filter_name not in self._filters or not self._filters[filter_name](item)):'
