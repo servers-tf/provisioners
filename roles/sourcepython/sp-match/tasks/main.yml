@@ -1,0 +1,31 @@
+---
+- name: Clone Match Github repo
+  git:
+    repo: 'https://github.com/scrims-tf/sourcepython-plugins.git'
+    dest: /tmp/scrims-tf-sourcepython-plugins
+
+- name: Create Match Plugin directories
+  file:
+    path: "{{ srcds_root_dir }}/tf2/tf/{{ item }}"
+    state: directory
+    owner: "{{ srcds_user }}"
+    group: "{{ srcds_user }}"
+  with_items:
+    - addons/source-python/plugins/match/
+    - matches/
+
+- name: Install Match Requirements
+  pip:
+    requirements: /tmp/scrims-tf-sourcepython-plugins/match/requirements.txt
+    executable: /usr/bin/pip3
+    extra_args: -t "{{ srcds_root_dir }}/tf2/tf/addons/source-python/packages/custom"
+
+- name: Install Match Plugin
+  copy:
+    src: "/tmp/scrims-tf-sourcepython-plugins/match/{{ item }}"
+    dest: "{{ srcds_root_dir }}/tf2/tf/addons/source-python/plugins/match/{{ item }}"
+    owner: "{{ srcds_user }}"
+    group: "{{ srcds_user }}"
+  with_items:
+    - match.py
+    - info.ini
