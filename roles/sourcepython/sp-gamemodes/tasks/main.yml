@@ -24,9 +24,9 @@
     - info.ini
 
 - name: Install Gamemodemenu Configs
-  unarchive:
-    src: files/configs.tar.gz
-    dest: "{{ srcds_root_dir }}/tf2/tf/"
+  copy:
+    src: files/custom/
+    dest: "{{ srcds_root_dir }}/tf2/tf/custom"
     owner: "{{ srcds_user }}"
     group: "{{ srcds_user }}"
 
@@ -36,5 +36,5 @@
     dest: "{{ srcds_root_dir }}/tf2/tf/"
     owner: "{{ srcds_user }}"
     group: "{{ srcds_user }}"
-    mode: 0644 
+    mode: 0644
     
