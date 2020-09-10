@@ -1,6 +1,6 @@
 {
     "DEFAULT": "Death Match",
-    "RGL 6v6 (Traditional)": {
+    "RGL 6v6": {
         "shuffle": false,
         "configs": {
             "cp": ["rgl_6s_5cp_scrim", "rgl_6s_5cp_match_half1", "rgl_6s_5cp_match_half2"],
