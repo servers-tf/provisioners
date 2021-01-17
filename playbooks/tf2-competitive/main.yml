@@ -102,6 +102,7 @@
         - ctf_hellfire
         - ctf_landfall
         - ctf_sawmill
+        - ctf_snowfall_final
         - ctf_thundermountain
         - itemtest
         - koth_badlands
@@ -113,6 +114,7 @@
         - koth_king
         - koth_lakeside_event
         - koth_lazarus
+        - koth_megalo
         - koth_maple_ridge_event
         - koth_moonshine_event
         - koth_nucleus
@@ -121,6 +123,7 @@
         - koth_slasher
         - koth_slaughter_event
         - koth_suijin
+        - koth_undergrove_event
         - koth_viaduct
         - koth_viaduct_event
         - mvm_bigrock
@@ -136,13 +139,16 @@
         - pd_cursed_cove_event
         - pd_monster_bash
         - pd_pit_of_death_event
+        - pd_snowville_event
         - pd_watergate
         - pl_badwater
+        - pl_bloodwater
         - pl_barnblitz
         - pl_cactuscanyon
         - pl_enclosure_final
         - pl_fifthcurve_event
         - pl_frontier_final
+        - pl_hasslecastle
         - pl_goldrush
         - pl_hoodoo_final
         - pl_millstone_event
@@ -150,6 +156,7 @@
         - pl_rumble_event
         - pl_snowycoast
         - pl_thundermountain
+        - pl_wutville_event
         - plr_bananabay
         - plr_hightower
         - plr_hightower_event
@@ -215,9 +222,9 @@
         - mv "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/funcommands.smx" "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/disabled/"
         - mv "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/basevotes.smx" "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/disabled/"
         - mv "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/nextmap.smx" "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/disabled/"
-        - mv "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/logstf.smx" "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/disabled/"
-        - mv "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/demostf.smx" "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/disabled/"
-        - mv "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/recordstv.smx" "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/disabled/"
+        #- mv "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/logstf.smx" "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/disabled/"
+        #- mv "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/demostf.smx" "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/disabled/"
+        #- mv "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/recordstv.smx" "{{ srcds_root_dir }}/tf2/tf/addons/sourcemod/plugins/disabled/"
 
     - name: Add startup and shutdown scripts
       copy:

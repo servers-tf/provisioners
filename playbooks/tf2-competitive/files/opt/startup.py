@@ -40,8 +40,10 @@ secrets = {secret['Name']: secret['Value'] for secret in secrets}
 
 # Put secrets
 with open(TF_SECRETS_FILE, "w") as file:
+    file.write(f"logstf_apikey \"{secrets['logstf_api_key']}\"\n")
     file.write(f"logstf_api_key \"{secrets['logstf_api_key']}\"\n")
     file.write(f"demostf_api_key \"{secrets['demostf_api_key']}\"\n")
+    file.write(f"sm_demostf_apikey \"{secrets['demostf_api_key']}\"\n")
     file.write(f"discord_api_key \"{secrets['discord_api_key']}\"\n")
     file.write(f"archive_s3_bucket \"{secrets['archive_s3_bucket']}\"\n")
     file.write(f"discord_message_id \"{tags['discord_message_id']}\"\n")

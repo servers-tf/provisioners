@@ -1,5 +1,6 @@
 {
     "STEAM_0:0:40112661":   {"name": "Zeus",        "parents": ["administrator"]},
+    "STEAM_0:1:118005833":  {"name": "Blazer",      "parents": ["administrator"]},
     "STEAM_1:0:28696418":   {"name": "DB",          "parents": ["administrator"]},
     "STEAM_0:0:72204191":   {"name": "Lecrum",      "parents": ["administrator"]},
     "STEAM_0:1:65986312":   {"name": "DeathToCats", "parents": ["administrator"]},

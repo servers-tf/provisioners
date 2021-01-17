@@ -1,0 +1,24 @@
+---
+- name: Clone SP Exec Github repo
+  git:
+    repo: 'https://github.com/scrims-tf/sourcepython-plugins.git'
+    dest: /tmp/scrims-tf-sourcepython-plugins
+
+- name: Create SP Exec Plugin directories
+  file:
+    path: "{{ srcds_root_dir }}/tf2/tf/{{ item }}"
+    state: directory
+    owner: "{{ srcds_user }}"
+    group: "{{ srcds_user }}"
+  with_items:
+    - addons/source-python/plugins/sp_exec/
+
+- name: Install SP Exec Plugin
+  copy:
+    src: "/tmp/scrims-tf-sourcepython-plugins/sp_exec/{{ item }}"
+    dest: "{{ srcds_root_dir }}/tf2/tf/addons/source-python/plugins/sp_exec/{{ item }}"
+    owner: "{{ srcds_user }}"
+    group: "{{ srcds_user }}"
+  with_items:
+    - sp_exec.py
+    - info.ini
