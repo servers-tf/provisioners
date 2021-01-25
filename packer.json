@@ -6,7 +6,7 @@
     "builders": [
         {
             "type": "amazon-ebs",
-            "instance_type": "m5.large",
+            "instance_type": "t3a.medium",
             "ami_name": "{{user `playbook`}}-{{isotime | clean_resource_name}}",
             "ssh_username": "ubuntu",
             "region": "us-east-2",
