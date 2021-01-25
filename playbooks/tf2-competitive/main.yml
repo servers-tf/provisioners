@@ -236,6 +236,7 @@
       with_items:
         - /opt/startup.py
         - /opt/cron_shutdown.py
+        - /opt/cron_load_auth.py
 
     - name: Install cron_shutdown deps
       pip:
@@ -249,6 +250,12 @@
         name: cron_shutdown
         minute: "*"
         job: "/usr/bin/python3.6 /opt/cron_shutdown.py >> /var/log/cron_shutdown.log 2>&1"
+
+    - name: Cronjob for refreshing auth
+      cron:
+        name: cron_load_auth
+        minute: "*"
+        job: "/usr/bin/python3.6 /opt/cron_load_auth.py >> /var/log/cron_load_auth.log 2>&1"
 
     - name: Create symlink for tf2
       file:
@@ -283,9 +290,7 @@
         owner: "{{ srcds_user }}"
         group: "{{ srcds_user }}"
       with_items:
-        - players.json
         - parents.json
-        - simple.txt
 
     - name: Telegraf srcds config
       copy:

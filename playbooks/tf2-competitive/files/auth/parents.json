@@ -1,8 +1,8 @@
 {
-    "administrator": {
+    "admin": {
         "permissions": ["*"]
     },
-    "pug_admin": {
+    "pug_runner": {
         "permissions": ["*"]
     },
     "reservation": {
